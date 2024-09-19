@@ -1,34 +1,34 @@
-<WeatherScreen>:
-    MDBoxLayout:
-        orientation: 'vertical'
-        MDTopAppBar:
-            title: "LCloud"
-            right_action_items: [["dots-vertical", lambda x: app.callback()]]
+<WeatherScreen>:  # Визначення основного екрану погоди
+    MDBoxLayout:  # Використання BoxLayout для вертикального розташування елементів
+        orientation: 'vertical'  # Встановлення вертикальної орієнтації для Layout
+        MDTopAppBar:  # Додавання верхньої панелі додатка
+            title: "LCloud"  # Заголовок панелі
+            right_action_items: [["dots-vertical", lambda x: app.callback()]]  # Кнопка для відкриття меню
 
-        MDBoxLayout:
-            spacing: "10sp"
-            size_hint: 0.9, None
-            pos_hint: {'center_x': 0.5}
-            MDTextField:
-                hint_text: "Введіть місто"
-                mode: "round"
+        MDBoxLayout:  # Додатковий BoxLayout для вводу даних
+            spacing: "10sp"  # Відстань між елементами
+            size_hint: 0.9, None  # Встановлення розміру, ширина 90% від батьківського контейнера
+            pos_hint: {'center_x': 0.5}  # Вирівнювання по центру по осі X
+            MDTextField:  # Поле для вводу тексту
+                hint_text: "Введіть місто"  # Підказка для користувача
+                mode: "round"  # Закруглені краї поля
 
-            MDIconButton:
-                icon: "search-web"
-                icon_size: "32sp"
-                md_bg_color: app.theme_cls.primary_color
+            MDIconButton:  # Кнопка з іконкою
+                icon: "search-web"  # Іконка для кнопки
+                icon_size: "32sp"  # Розмір іконки
+                md_bg_color: app.theme_cls.primary_color  # Фоновий колір кнопки, відповідний темі
 
-        MDBoxLayout:
-            orientation: 'vertical'
-            pos_hint:{'center_x':0.5}
-            size_hint: 0.9 , 0.4
-        MDLabel: 
-            text: "14°С"
-            font_styles: 'H2'
-            halign:'center' 
+        MDBoxLayout:  # Ще один BoxLayout для відображення інформації про погоду
+            orientation: 'vertical'  # Вертикальна орієнтація
+            pos_hint:{'center_x':0.5}  # Вирівнювання по центру
+            size_hint: 0.9 , 0.4  # Розмір: 90% ширини та 40% висоти
 
-        MDLabel:    
-            text: "Ясно"
-            font_styles: 'H2'
-            halign:'center' 
+            MDLabel:  # Перший текстовий елемент для відображення температури
+                text: "14°С"  # Температура
+                font_style: 'H1'  # Стиль шрифту (великий заголовок)
+                halign:'center'  # Вирівнювання тексту по центру
 
+            MDLabel:  # Другий текстовий елемент для відображення стану погоди
+                text: "Ясно"  # Стан погоди
+                font_style: 'H4'  # Стиль шрифту (менший заголовок)
+                halign:'center'  # Вирівнювання тексту по центру
