@@ -12,8 +12,8 @@ class WeatherScreen(MDScreen):
 class Lclaud(MDApp):
     def build(self):
         Builder.load_file('syle.kv')
-        self.theme_cls.theme_style = "Light"
-        self.theme_cls.primary_palette = "Purple"
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = "LightGreen"
 
 
         return WeatherScreen()

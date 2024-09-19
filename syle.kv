@@ -1,4 +1,34 @@
 <WeatherScreen>:
-    MDTopAppBar:
-        title: "MDTopAppBar"
-        right_action_items: [["dots-vertical", lambda x: app.callback()]]
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            title: "LCloud"
+            right_action_items: [["dots-vertical", lambda x: app.callback()]]
+
+        MDBoxLayout:
+            spacing: "10sp"
+            size_hint: 0.9, None
+            pos_hint: {'center_x': 0.5}
+            MDTextField:
+                hint_text: "Введіть місто"
+                mode: "round"
+
+            MDIconButton:
+                icon: "search-web"
+                icon_size: "32sp"
+                md_bg_color: app.theme_cls.primary_color
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            pos_hint:{'center_x':0.5}
+            size_hint: 0.9 , 0.4
+        MDLabel: 
+            text: "14°С"
+            font_styles: 'H2'
+            halign:'center' 
+
+        MDLabel:    
+            text: "Ясно"
+            font_styles: 'H2'
+            halign:'center' 
+
