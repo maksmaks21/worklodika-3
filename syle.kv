@@ -1,6 +1,7 @@
 <WeatherScreen>:  # Визначення основного екрану погоди
     MDBoxLayout:  # Використання BoxLayout для вертикального розташування елементів
         orientation: 'vertical'  # Встановлення вертикальної орієнтації для Layout
+        spacing: "20sp"
         MDTopAppBar:  # Додавання верхньої панелі додатка
             title: "LCloud"  # Заголовок панелі
             right_action_items: [["dots-vertical", lambda x: app.callback()]]  # Кнопка для відкриття меню
@@ -8,8 +9,7 @@
         MDBoxLayout:  # Додатковий BoxLayout для вводу даних
             spacing: "10sp"  # Відстань між елементами
             size_hint: 0.9, None  # Встановлення розміру, ширина 90% від батьківського контейнера
-            pos_hint: {'center_x': 0.5}  # Вирівнювання по центру по осі X
-            size_hint: 0.9 , 0.5 
+            pos_hint: {'center_x': 0.5}  # Вирівнювання по центру по осі X 
             
             MDTextField:  # Поле для вводу тексту
                 id: city
@@ -32,6 +32,7 @@
                 size:("150sp","150sp")
                 fit_mode: 'contain'
                 source:'https://openweathermap.org/img/wn/10d@2x.png'
+                spacing: "15sp"
 
             MDLabel:
                 id: temp
@@ -41,7 +42,7 @@
             MDLabel:
                 id: feels_like
                 text: "Відчувається як"
-                font_style: 'H4'
+                font_style: 'Body1'
                 halign: 'center'
             MDLabel:
                 id: desc
@@ -58,15 +59,13 @@
                 text: "Вітер:"
                 font_style: 'Body1'
                 halign: 'center'
-            MDFillRoundFlatButton:
-                text: "Дивитися прогноз"
-                pos_hint: {'center_x': 0.5)
             Widget:
                 size_hint_y: None
                 height: "50sp"
             MDFillRoundFlatButton:
                 text: "Дивитися прогноз"
                 pos_hint: {'center_x': 0.5}
+                on_press: root.show_forecast()
             Widget:
                 size_hint_y: None
                 height: "50sp"
@@ -76,6 +75,11 @@
     MDBoxLayout:
         orientation: 'vertical'
         spacing: "20sp"
-    MDTopAppBar:
-        title: "Прогноз погоди"
-        right_action_items: [["dots-vertical", lambda x: app.callback()]]
+        MDTopAppBar:
+            title: "Прогноз погоди"
+            left_action_items: [["arrow-left", lambda x: root.back()]]
+        ScrollView:
+            MDBoxLayout:
+                orientation:"vertical"
+                pos_hint: {'center_x': 0.5}
+                size_hint: 0.9 , 0.8

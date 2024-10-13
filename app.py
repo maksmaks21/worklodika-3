@@ -19,10 +19,11 @@ class WeatherScreen(MDScreen):
         data = requests.get(CURRENT_WEATHER_URL, params)
         response = data.json()
         print(response)
+        return response
 
     def search(self):
         city = self.ids.city.text
-        weather = self.get_weather (city)
+        weather = self.get_weather(city)
 
         temp = weather ["main"]["temp"]
         self.ids.temp.text = f"{temp}°C"    
@@ -31,10 +32,10 @@ class WeatherScreen(MDScreen):
         self.ids.feels_like.text = f"Відчувається як {round(feels_like)}°C"
 
         desc = weather["weather"][0]["description"]
-        self.ids.desc.text = desc.capitalizen()
+        self.ids.desc.text = desc.capitalize()
 
         humidity = weather["main"]["humidity"]
-        self.ids.humidity.text = "Вологість: {humidity}%"
+        self.ids.humidity.text = f"Вологість: {humidity}%"
 
         wind = weather["wind"]["speed"]
         self.ids.wind.text = f"вітер: {wind} м/с "
@@ -42,27 +43,27 @@ class WeatherScreen(MDScreen):
         icon = weather["weather"][0]["icon"]
         self.ids.icon.source = f'https://openweathermap.org/img/wn/{icon}@2x.png'
 
+
+
+    def show_forecast(self):
+        self.manager.transition.direction='left'
+        self.manager.current = 'forecast'
+
+class ForecastScreen (MDScreen):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def back(self):
+        self.manager.transition.direction='right'
+        self.manager.current = 'home'
+
 class Lclaud(MDApp):
     def build(self):
         Builder.load_file('syle.kv')
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "LightGreen" #'Teal'
-
-    def show_forecast(self):
-        self.manager.transition.direction='right'
-        self.manager.current = 'forecast'
-
-class ForecastScreen (MDScreen):
-    def _init_(self, *args, **kwargs):
-        super()._init_(*args, **kwargs)
-
-class LCloudApp (MDApp):
-    def build(self):
-        Builder.load_file('style.kv')
-        self.theme_cls.theme_style = "Dark"
-        self.theme_cls.primary_palette = "Purple"
         sm = MDScreenManager()
-        self.weather_screen WeatherScreen(name='home')
+        self.weather_screen=WeatherScreen(name='home')
         self.forecast_screen = ForecastScreen (name='forecast')
         sm.add_widget(self.weather_screen)
         sm.add_widget(self.forecast_screen)
